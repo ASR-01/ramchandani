@@ -4,6 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 
 import {Geist} from "next/font/google";
+import Image from "next/image";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -72,7 +73,7 @@ export function Navbar() {
   return (
     <nav className="border-b z-50 absolute top-0 left-0 w-full flex justify-between items-center gap-2 px-10 py-2">
       <Link href="/" className={`flex items-center gap-2 px-4 py-2 text-sm font-medium  ${geistSans.className}`}>
-        BRANDORA CREATIONS
+       <Image src="/logo.svg" alt="Brandora Creations" width={100} height={100} />
       </Link>
       <div className="hidden md:block mx-auto px-4">
         <NavigationMenu viewport={isMobile} className="w-full ">
@@ -129,7 +130,7 @@ export function Navbar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-      </div>
+      </div> 
       <FlowButton href="/contact" >CONTACT US</FlowButton>
     </nav>
   );

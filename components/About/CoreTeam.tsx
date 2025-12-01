@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { Geist } from "next/font/google";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { cn } from "@/lib/utils";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -20,16 +22,19 @@ const teamMembers = [
     name: "Amr Mohamed Fayez Radi",
     role: "Founder & Creative Director",
     description: "Visionary strategist leading brand identity, social media direction, and digital growth. Expert in delivering clean, modern, and effective brand experiences that stand out.",
+    image: "/director.jpeg",
   },
   {
     name: "Nandani Ramchandani",
     role: "Design & Content Lead",
     description: "Specializes in creative design, brand visuals, and content development. Ensures every creative piece — from logos to social posts — speaks the brand's language.",
+    image: "/marketing.jpeg",
   },
   {
     name: "Vipul Mahawar",
     role: "Tech & Development Lead",
     description: "Handles websites, landing pages, user experience, and technical execution. Brings ideas to life with clean code, smooth functionality, and performance-driven builds.",
+    image: "/tech.jpeg",
   },
 ];
 
@@ -160,32 +165,59 @@ const CoreTeam = () => {
                 ref={(el) => {
                   cardsRef.current[index] = el;
                 }}
-                className="group relative bg-card border border-border rounded-xl p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                className={cn(
+                  "group border-primary/10 bg-card hover:border-primary/30 relative flex h-full cursor-pointer flex-col overflow-hidden rounded-xl border px-6 pt-6 pb-8 shadow-md transition-all duration-500 hover:shadow-lg"
+                )}
               >
-                {/* Background gradient on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
+                {/* Decorative grid pattern */}
+                <div className="absolute top-0 -right-1/2 z-0 size-full cursor-pointer bg-[linear-gradient(to_right,#3d16165e_1px,transparent_1px),linear-gradient(to_bottom,#3d16165e_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:24px_24px]"></div>
+                
                 {/* Content */}
-                <div className="relative z-10">
-                  <h3
-                    className={`text-xl md:text-2xl mb-2 tracking-tight ${geistSans.className}`}
-                  >
-                    {member.name}
-                  </h3>
-                  <p
-                    className={`text-base md:text-lg text-primary mb-4 ${geistSans.className}`}
-                  >
-                    {member.role}
-                  </p>
-                  <p
-                    className={`text-sm md:text-[16px] leading-relaxed text-muted-foreground ${geistSans.className}`}
-                  >
-                    {member.description}
-                  </p>
+                <div className="relative z-10 flex h-full flex-col">
+                  {/* Image */}
+                  <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden bg-muted">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                    {/* Image overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+
+                  {/* Text Content */}
+                  <div className="flex-1 flex flex-col">
+                    <h3
+                      className={cn(
+                        "text-xl md:text-2xl mb-2 tracking-tight",
+                        geistSans.className
+                      )}
+                    >
+                      {member.name}
+                    </h3>
+                    <p
+                      className={cn(
+                        "text-base md:text-lg text-primary mb-4 font-medium",
+                        geistSans.className
+                      )}
+                    >
+                      {member.role}
+                    </p>
+                    <p
+                      className={cn(
+                        "text-sm md:text-[16px] leading-relaxed text-muted-foreground",
+                        geistSans.className
+                      )}
+                    >
+                      {member.description}
+                    </p>
+                  </div>
                 </div>
 
-                {/* Decorative element */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Bottom gradient accent */}
+                <div className="from-primary to-primary/30 absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r blur-2xl transition-all duration-500 group-hover:blur-lg" />
               </div>
             ))}
           </div>

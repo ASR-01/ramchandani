@@ -78,7 +78,7 @@ export default function FAQs() {
                   key={item.id}
                   value={item.id}
                   className="border-b border-gray-200 dark:border-gray-600">
-                  <AccordionTrigger className={`cursor-pointer text-base font-medium hover:no-underline ${geistSans.className}`}>{item.question}</AccordionTrigger>
+                  <AccordionTrigger className={`cursor-pointer text-base font-medium hover:no-underline ${jetBrainsMono.className}`}>{item.question}</AccordionTrigger>
                   <AccordionContent>
                     <BlurredStagger text={item.answer} />
                   </AccordionContent>
@@ -135,7 +135,7 @@ export const BlurredStagger = ({
               key={index}
               variants={letterAnimation}
               transition={{ duration: 0.3 }}
-                className={`inline-block ${geistSans.className}`}
+                className={`inline-block ${jetBrainsMono.className}`}
             >
               {char === " " ? "\u00A0" : char}
             </motion.span>
