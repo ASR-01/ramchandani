@@ -74,7 +74,7 @@ const ServicesCta = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full py-16 md:py-24 bg-muted/30">
+    <section ref={sectionRef} className="w-full py-16 md:py-24 ">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2

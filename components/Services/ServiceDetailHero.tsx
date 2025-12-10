@@ -135,7 +135,7 @@ const ServiceDetailHero = ({ headline, overview }: ServiceDetailHeroProps) => {
   }, []);
 
   return (
-    <div className="w-full relative mb-16" ref={containerRef}>
+    <div className="w-full relative mb-16 px-5" ref={containerRef}>
       <GradientBars bars={20} colors={['#e2733b', 'transparent']} />
       
       <div className="flex gap-8 py-20 lg:pt-40 items-start md:items-center justify-center flex-col relative z-10 max-w-6xl mx-auto">

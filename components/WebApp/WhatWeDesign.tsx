@@ -109,7 +109,7 @@ const WhatWeDesign = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full py-16 md:py-24 bg-muted/30">
+    <section ref={sectionRef} className="w-full py-16 md:py-24 ">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <h2
@@ -119,40 +119,42 @@ const WhatWeDesign = () => {
             What We Design
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {designCategories.map((category, index) => (
               <div
                 key={index}
                 ref={(el) => {
                   cardsRef.current[index] = el;
                 }}
-                className="group relative bg-card border border-border rounded-xl p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                className="group relative border-primary/10 bg-card hover:border-primary/30 flex h-full cursor-pointer flex-col justify-between overflow-hidden rounded-xl border px-6 pt-6 pb-10 shadow-md transition-all duration-500 hover:shadow-lg"
               >
-                {/* Background gradient on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Grid pattern background */}
+                <div className="absolute top-0 -right-1/2 z-0 size-full cursor-pointer bg-[linear-gradient(to_right,#3d16165e_1px,transparent_1px),linear-gradient(to_bottom,#3d16165e_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:24px_24px]"></div>
 
                 {/* Content */}
-                <div className="relative z-10">
-                  <h3
-                    className={`text-xl md:text-2xl mb-6 tracking-tight ${geistSans.className}`}
-                  >
-                    {category.title}
-                  </h3>
-                  <ul className="space-y-3">
-                    {category.items.map((item, itemIndex) => (
-                      <li
-                        key={itemIndex}
-                        className={`flex items-start gap-3 text-base md:text-[16px] text-muted-foreground ${geistSans.className}`}
-                      >
-                        <span className="text-primary mt-1">●</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="relative z-10 flex h-full flex-col justify-between">
+                  <div>
+                    <h3
+                      className={`text-xl md:text-2xl mb-6 tracking-tight ${geistSans.className}`}
+                    >
+                      {category.title}
+                    </h3>
+                    <ul className="space-y-3">
+                      {category.items.map((item, itemIndex) => (
+                        <li
+                          key={itemIndex}
+                          className={`flex items-start gap-3 text-base md:text-[16px] text-muted-foreground leading-relaxed ${geistSans.className}`}
+                        >
+                          <span className="text-primary mt-1">●</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
-                {/* Decorative element */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Bottom gradient effect */}
+                <div className="from-primary to-primary/30 absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r blur-2xl transition-all duration-500 group-hover:blur-lg" />
               </div>
             ))}
           </div>

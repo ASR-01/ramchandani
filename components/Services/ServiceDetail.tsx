@@ -149,7 +149,7 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
           overview={service.overview}
         />
 
-        <div className="relative z-10 max-w-6xl mx-auto">
+        <div className="relative z-10 max-w-6xl mx-auto px-5">
           {/* What We Deliver */}
           {service.whatWeDeliver && service.whatWeDeliver.length > 0 && (
             <div
@@ -163,37 +163,39 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
               >
                 What We Deliver
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {service.whatWeDeliver.map((feature, index) => (
                   <div
                     key={index}
-                    className="group relative bg-card border border-border rounded-xl p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                    className="group relative border-primary/10 bg-card hover:border-primary/30 flex h-full cursor-pointer flex-col justify-between overflow-hidden rounded-xl border px-6 pt-6 pb-10 shadow-md transition-all duration-500 hover:shadow-lg"
                   >
-                    {/* Background gradient on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Grid pattern background */}
+                    <div className="absolute top-0 -right-1/2 z-0 size-full cursor-pointer bg-[linear-gradient(to_right,#3d16165e_1px,transparent_1px),linear-gradient(to_bottom,#3d16165e_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:24px_24px]"></div>
                     
                     {/* Content */}
-                    <div className="relative z-10">
-                      <h3
-                        className={`text-xl md:text-2xl mb-6 tracking-tight ${geistSans.className}`}
-                      >
-                        {feature.title}
-                      </h3>
-                      <ul className="space-y-3">
-                        {feature.items.map((item, itemIndex) => (
-                          <li
-                            key={itemIndex}
-                            className={`flex items-start gap-3 text-base md:text-[16px] text-muted-foreground ${geistSans.className}`}
-                          >
-                            <span className="text-primary mt-1">●</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    <div className="relative z-10 flex h-full flex-col justify-between">
+                      <div>
+                        <h3
+                          className={`text-xl md:text-2xl mb-6 tracking-tight ${geistSans.className}`}
+                        >
+                          {feature.title}
+                        </h3>
+                        <ul className="space-y-3">
+                          {feature.items.map((item, itemIndex) => (
+                            <li
+                              key={itemIndex}
+                              className={`flex items-start gap-3 text-base md:text-[16px] text-muted-foreground leading-relaxed ${geistSans.className}`}
+                            >
+                              <span className="text-primary mt-1">●</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
 
-                    {/* Decorative element */}
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    {/* Bottom gradient effect */}
+                    <div className="from-primary to-primary/30 absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r blur-2xl transition-all duration-500 group-hover:blur-lg" />
                   </div>
                 ))}
               </div>
@@ -255,14 +257,22 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
                 {service.results.map((result, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-3 bg-card border border-border rounded-lg p-4"
+                    className="group relative border-primary/10 bg-card hover:border-primary/30 flex items-start gap-3 overflow-hidden rounded-xl border px-6 pt-6 pb-10 shadow-md transition-all duration-500 hover:shadow-lg"
                   >
-                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span
-                      className={`text-base md:text-[16px] text-muted-foreground ${geistSans.className}`}
-                    >
-                      {result.text}
-                    </span>
+                    {/* Grid pattern background */}
+                    <div className="absolute top-0 -right-1/2 z-0 size-full cursor-pointer bg-[linear-gradient(to_right,#3d16165e_1px,transparent_1px),linear-gradient(to_bottom,#3d16165e_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:24px_24px]"></div>
+                    
+                    <div className="relative z-10 flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span
+                        className={`text-base md:text-[16px] text-muted-foreground leading-relaxed ${geistSans.className}`}
+                      >
+                        {result.text}
+                      </span>
+                    </div>
+
+                    {/* Bottom gradient effect */}
+                    <div className="from-primary to-primary/30 absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r blur-2xl transition-all duration-500 group-hover:blur-lg" />
                   </div>
                 ))}
               </div>
@@ -286,14 +296,22 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
                 {service.whatMakesDifferent.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-3 bg-card border border-border rounded-lg p-4"
+                    className="group relative border-primary/10 bg-card hover:border-primary/30 flex items-start gap-3 overflow-hidden rounded-xl border px-6 pt-6 pb-10 shadow-md transition-all duration-500 hover:shadow-lg"
                   >
-                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span
-                      className={`text-base md:text-[16px] text-muted-foreground ${geistSans.className}`}
-                    >
-                      {item}
-                    </span>
+                    {/* Grid pattern background */}
+                    <div className="absolute top-0 -right-1/2 z-0 size-full cursor-pointer bg-[linear-gradient(to_right,#3d16165e_1px,transparent_1px),linear-gradient(to_bottom,#3d16165e_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:24px_24px]"></div>
+                    
+                    <div className="relative z-10 flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span
+                        className={`text-base md:text-[16px] text-muted-foreground leading-relaxed ${geistSans.className}`}
+                      >
+                        {item}
+                      </span>
+                    </div>
+
+                    {/* Bottom gradient effect */}
+                    <div className="from-primary to-primary/30 absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r blur-2xl transition-all duration-500 group-hover:blur-lg" />
                   </div>
                 ))}
               </div>
@@ -343,14 +361,22 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
                 {service.monthlyDeliverables.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-3 bg-card border border-border rounded-lg p-4"
+                    className="group relative border-primary/10 bg-card hover:border-primary/30 flex items-start gap-3 overflow-hidden rounded-xl border px-6 pt-6 pb-10 shadow-md transition-all duration-500 hover:shadow-lg"
                   >
-                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span
-                      className={`text-base md:text-[16px] text-muted-foreground ${geistSans.className}`}
-                    >
-                      {item}
-                    </span>
+                    {/* Grid pattern background */}
+                    <div className="absolute top-0 -right-1/2 z-0 size-full cursor-pointer bg-[linear-gradient(to_right,#3d16165e_1px,transparent_1px),linear-gradient(to_bottom,#3d16165e_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:24px_24px]"></div>
+                    
+                    <div className="relative z-10 flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span
+                        className={`text-base md:text-[16px] text-muted-foreground leading-relaxed ${geistSans.className}`}
+                      >
+                        {item}
+                      </span>
+                    </div>
+
+                    {/* Bottom gradient effect */}
+                    <div className="from-primary to-primary/30 absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r blur-2xl transition-all duration-500 group-hover:blur-lg" />
                   </div>
                 ))}
               </div>
@@ -366,7 +392,7 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
               className="mb-16"
             >
               <h2
-                className={`text-3xl md:text-4xl mb-8 tracking-tight ${geistSans.className}`}
+                className={`text-3xl md:text-4xl font-medium mb-8 tracking-tight ${geistSans.className}`}
               >
                 What&apos;s Included
               </h2>
@@ -374,14 +400,22 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
                 {service.whatIncluded.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-start gap-3 bg-card border border-border rounded-lg p-4"
+                    className="group relative border-primary/10 bg-card hover:border-primary/30 flex items-start gap-3 overflow-hidden rounded-xl border px-6 pt-6 pb-10 shadow-md transition-all duration-500 hover:shadow-lg"
                   >
-                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span
-                      className={`text-base md:text-[16px] text-muted-foreground ${geistSans.className}`}
-                    >
-                      {item}
-                    </span>
+                    {/* Grid pattern background */}
+                    <div className="absolute top-0 -right-1/2 z-0 size-full cursor-pointer bg-[linear-gradient(to_right,#3d16165e_1px,transparent_1px),linear-gradient(to_bottom,#3d16165e_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:24px_24px]"></div>
+                    
+                    <div className="relative z-10 flex items-start gap-3">
+                      <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                      <span
+                        className={`text-base md:text-[16px] text-muted-foreground leading-relaxed ${geistSans.className}`}
+                      >
+                        {item}
+                      </span>
+                    </div>
+
+                    {/* Bottom gradient effect */}
+                    <div className="from-primary to-primary/30 absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r blur-2xl transition-all duration-500 group-hover:blur-lg" />
                   </div>
                 ))}
               </div>
@@ -401,36 +435,43 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
               >
                 Package Options
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                 {service.packageOptions.map((pkg, index) => (
                   <div
                     key={index}
-                    className="group relative bg-card border border-border rounded-xl p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                    className="group relative border-primary/10 bg-card hover:border-primary/30 flex h-full cursor-pointer flex-col justify-between overflow-hidden rounded-xl border px-6 pt-6 pb-10 shadow-md transition-all duration-500 hover:shadow-lg"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="relative z-10">
-                      <h3
-                        className={`text-xl md:text-2xl mb-2 tracking-tight ${geistSans.className}`}
-                      >
-                        {pkg.name}
-                      </h3>
-                      <p
-                        className={`text-2xl md:text-3xl font-bold text-primary mb-6 ${geistSans.className}`}
-                      >
-                        {pkg.price}
-                      </p>
-                      <ul className="space-y-3">
-                        {pkg.features.map((feature, featureIndex) => (
-                          <li
-                            key={featureIndex}
-                            className={`flex items-start gap-3 text-sm md:text-[16px] text-muted-foreground ${geistSans.className}`}
-                          >
-                            <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    {/* Grid pattern background */}
+                    <div className="absolute top-0 -right-1/2 z-0 size-full cursor-pointer bg-[linear-gradient(to_right,#3d16165e_1px,transparent_1px),linear-gradient(to_bottom,#3d16165e_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:24px_24px]"></div>
+                    
+                    <div className="relative z-10 flex h-full flex-col justify-between">
+                      <div>
+                        <h3
+                          className={`text-xl md:text-2xl mb-2 tracking-tight ${geistSans.className}`}
+                        >
+                          {pkg.name}
+                        </h3>
+                        <p
+                          className={`text-2xl md:text-3xl font-bold text-primary mb-6 ${geistSans.className}`}
+                        >
+                          {pkg.price}
+                        </p>
+                        <ul className="space-y-3">
+                          {pkg.features.map((feature, featureIndex) => (
+                            <li
+                              key={featureIndex}
+                              className={`flex items-start gap-3 text-sm md:text-[16px] text-muted-foreground leading-relaxed ${geistSans.className}`}
+                            >
+                              <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
+
+                    {/* Bottom gradient effect */}
+                    <div className="from-primary to-primary/30 absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r blur-2xl transition-all duration-500 group-hover:blur-lg" />
                   </div>
                 ))}
               </div>
@@ -439,35 +480,43 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
 
           {/* Investment & Timeline */}
           {(service.investment || service.timeline) && (
-            <div className="bg-muted/30 border border-border rounded-xl p-6 md:p-8">
-              {service.investment && (
-                <div className="mb-6">
-                  <h3
-                    className={`text-xl md:text-2xl mb-2 tracking-tight ${geistSans.className}`}
-                  >
-                    Investment
-                  </h3>
-                  <p
-                    className={`text-lg md:text-xl text-muted-foreground ${geistSans.className}`}
-                  >
-                    {service.investment}
-                  </p>
-                </div>
-              )}
-              {service.timeline && (
-                <div>
-                  <h3
-                    className={`text-xl md:text-2xl mb-2 tracking-tight ${geistSans.className}`}
-                  >
-                    Timeline
-                  </h3>
-                  <p
-                    className={`text-lg md:text-xl text-muted-foreground ${geistSans.className}`}
-                  >
-                    {service.timeline}
-                  </p>
-                </div>
-              )}
+            <div className="group relative border-primary/10 bg-card hover:border-primary/30 overflow-hidden rounded-xl border px-6 pt-6 pb-10 shadow-md transition-all duration-500 hover:shadow-lg">
+              {/* Grid pattern background */}
+              <div className="absolute top-0 -right-1/2 z-0 size-full cursor-pointer bg-[linear-gradient(to_right,#3d16165e_1px,transparent_1px),linear-gradient(to_bottom,#3d16165e_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:24px_24px]"></div>
+              
+              <div className="relative z-10">
+                {service.investment && (
+                  <div className="mb-6">
+                    <h3
+                      className={`text-xl font-medium md:text-2xl mb-2 tracking-tight ${geistSans.className}`}
+                    >
+                      Investment
+                    </h3>
+                    <p
+                      className={`text-lg md:text-xl text-muted-foreground leading-relaxed ${geistSans.className}`}
+                    >
+                      {service.investment}
+                    </p>
+                  </div>
+                )}
+                {service.timeline && (
+                  <div>
+                    <h3
+                      className={`text-xl font-medium md:text-2xl mb-2 tracking-tight ${geistSans.className}`}
+                    >
+                      Timeline
+                    </h3>
+                    <p
+                      className={`text-lg md:text-xl text-muted-foreground leading-relaxed ${geistSans.className}`}
+                    >
+                      {service.timeline}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Bottom gradient effect */}
+              <div className="from-primary to-primary/30 absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r blur-2xl transition-all duration-500 group-hover:blur-lg" />
             </div>
           )}
           </div>

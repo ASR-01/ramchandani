@@ -5,7 +5,6 @@ import {
   TrendingUp,
   AppWindow,
   Figma,
-  ShoppingBag,
   UsersRound, 
   Globe,
   Building2,
@@ -49,6 +48,9 @@ const services = [
    background: <div className="absolute -top-20 -right-20 opacity-60" />,
    className:
      "lg:row-start-1 lg:row-end-3 lg:col-start-1 lg:col-end-2",
+   color: "bg-gradient-to-br from-[#454ADE]/10 via-[#454ADE]/5 to-transparent",
+   iconColor: "text-[#454ADE]",
+   borderColor: "border-[#454ADE]/20",
  },
  {
    Icon: UsersRound,
@@ -63,6 +65,9 @@ const services = [
    background: <div className="absolute -top-20 -right-20 opacity-60" />,
    className:
      "lg:row-start-1 lg:row-end-2 lg:col-start-2 lg:col-end-3",
+   color: "bg-gradient-to-br from-[#FFCFE1]/20 via-[#FFCFE1]/10 to-transparent",
+   iconColor: "text-[#E60A64]",
+   borderColor: "border-[#FFCFE1]/30",
  },
  {
    Icon: Globe,
@@ -77,6 +82,9 @@ const services = [
    background: <div className="absolute -top-20 -right-20 opacity-60" />,
    className:
      "lg:row-start-2 lg:row-end-3 lg:col-start-2 lg:col-end-3",
+   color: "bg-gradient-to-br from-[#D9EAE3]/20 via-[#D9EAE3]/10 to-transparent",
+   iconColor: "text-[#36D399]",
+   borderColor: "border-[#D9EAE3]/30",
  },
  {
    Icon: AppWindow,
@@ -91,20 +99,26 @@ const services = [
    background: <div className="absolute -top-20 -right-20 opacity-60" />,
    className:
      "lg:row-start-3 lg:row-end-4 lg:col-start-2 lg:col-end-3",
+   color: "bg-gradient-to-br from-[#DADBF8]/20 via-[#DADBF8]/10 to-transparent",
+   iconColor: "text-[#3ABFF8]",
+   borderColor: "border-[#DADBF8]/30",
  },
  {
    Icon: Figma,
    name: "Branding & Design",
    description:
-     "Stand out in your industry with a powerful brand identity. We craft logos, color palettes, brand guidelines, and complete visual systems that communicate your brand’s personality. Every design we create is strategic, memorable, and built to elevate how your audience perceives your business.",
+     "Stand out in your industry with a powerful brand identity. We craft logos, color palettes, brand guidelines, and complete visual systems that communicate your brand's personality. Every design we create is strategic, memorable, and built to elevate how your audience perceives your business.",
 
   subDescription:
-    "Stand out in your industry with a powerful brand identity. We craft logos, color palettes, brand guidelines, and complete visual systems that communicate your brand’s personality. Every design we create is strategic, memorable, and built to elevate how your audience perceives your business.",
+    "Stand out in your industry with a powerful brand identity. We craft logos, color palettes, brand guidelines, and complete visual systems that communicate your brand's personality. Every design we create is strategic, memorable, and built to elevate how your audience perceives your business.",
    href: "/services/branding-design",
    cta: "Learn more",
    background: <div className="absolute -top-20 -right-20 opacity-60" />,
    className:
      "lg:row-start-1 lg:row-end-2 lg:col-start-3 lg:col-end-4",
+   color: "bg-gradient-to-br from-[#FFFCE5]/30 via-[#FFFCE5]/15 to-transparent",
+   iconColor: "text-[#FBBD23]",
+   borderColor: "border-[#FFFCE5]/40",
  },
  {
    Icon: Building2,
@@ -119,6 +133,9 @@ const services = [
    background: <div className="absolute -top-20 -right-20 opacity-60" />,
    className:
      "lg:row-start-2 lg:row-end-4 lg:col-start-3 lg:col-end-4",
+   color: "bg-gradient-to-br from-[#DADBF8]/20 via-[#DADBF8]/10 to-transparent",
+   iconColor: "text-[#454ADE]",
+   borderColor: "border-[#DADBF8]/30",
  },
 ];
 
@@ -246,7 +263,15 @@ const ServicesOverview = () => {
               {/* Large Background Number */}
               <div className="absolute inset-0 flex items-center justify-end pr-8 lg:pr-16 pointer-events-none">
                 <h2
-                  className={`text-[15rem] lg:text-[25rem] xl:text-[35rem] font-bold text-black/5 select-none  leading-none ${jetBrainsMono.className}`}
+                  className={`text-[15rem] lg:text-[25rem] xl:text-[35rem] font-bold select-none leading-none ${jetBrainsMono.className}`}
+                  style={{
+                    color: service.iconColor === "text-[#454ADE]" ? "rgba(69, 74, 222, 0.05)" :
+                           service.iconColor === "text-[#E60A64]" ? "rgba(230, 10, 100, 0.05)" :
+                           service.iconColor === "text-[#36D399]" ? "rgba(54, 211, 153, 0.05)" :
+                           service.iconColor === "text-[#3ABFF8]" ? "rgba(58, 191, 248, 0.05)" :
+                           service.iconColor === "text-[#FBBD23]" ? "rgba(251, 189, 35, 0.05)" :
+                           "rgba(0, 0, 0, 0.05)"
+                  }}
                 >
                   {String(index + 1).padStart(2, "0")}
                 </h2>
@@ -254,11 +279,11 @@ const ServicesOverview = () => {
 
               {/* Content Container */}
               <div className="h-full flex items-center justify-center  lg:px-8">
-                <div className="group w-full max-w-4xl overflow-hidden rounded-2xl bg-card px-4">
+                <div className={`group w-full max-w-4xl overflow-hidden rounded-2xl bg-card px-4 `}>
                   <div>{service.background}</div>
                   <div className="relative z-10 flex flex-col gap-6">
-                  <div className="w-16 h-16 rounded-xl  border border-muted-foreground/20 shadow-xs flex items-center justify-center">
-                    <service.Icon className="w-8 h-8 " />
+                  <div className={`w-16 h-16 rounded-xl border ${service.borderColor} shadow-xs flex items-center justify-center bg-background/50 backdrop-blur-sm`}>
+                    <service.Icon className={`w-8 h-8 ${service.iconColor}`} />
                   </div>
                   <h3
                     className={`text-3xl lg:text-6xl  ${geistSans.className}`}
