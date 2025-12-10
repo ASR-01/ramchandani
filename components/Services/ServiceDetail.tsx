@@ -159,32 +159,41 @@ const ServiceDetail = ({ service }: ServiceDetailProps) => {
               className="mb-16"
             >
               <h2
-                className={`text-3xl md:text-4xl mb-8 tracking-tight ${geistSans.className}`}
+                className={`text-4xl md:text-5xl mb-12 tracking-tight ${geistSans.className}`}
               >
                 What We Deliver
               </h2>
-              <div className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {service.whatWeDeliver.map((feature, index) => (
                   <div
                     key={index}
-                    className="bg-card border border-border rounded-xl p-6 md:p-8"
+                    className="group relative bg-card border border-border rounded-xl p-6 md:p-8 hover:shadow-lg transition-shadow duration-300 overflow-hidden"
                   >
-                    <h3
-                      className={`text-xl md:text-2xl mb-4 tracking-tight ${geistSans.className}`}
-                    >
-                      {feature.title}
-                    </h3>
-                    <ul className="space-y-2">
-                      {feature.items.map((item, itemIndex) => (
-                        <li
-                          key={itemIndex}
-                          className={`flex items-start gap-3 text-base md:text-[16px] text-muted-foreground ${geistSans.className}`}
-                        >
-                          <span className="text-primary mt-1">●</span>
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    {/* Background gradient on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    
+                    {/* Content */}
+                    <div className="relative z-10">
+                      <h3
+                        className={`text-xl md:text-2xl mb-6 tracking-tight ${geistSans.className}`}
+                      >
+                        {feature.title}
+                      </h3>
+                      <ul className="space-y-3">
+                        {feature.items.map((item, itemIndex) => (
+                          <li
+                            key={itemIndex}
+                            className={`flex items-start gap-3 text-base md:text-[16px] text-muted-foreground ${geistSans.className}`}
+                          >
+                            <span className="text-primary mt-1">●</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Decorative element */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
                 ))}
               </div>

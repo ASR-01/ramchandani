@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import Link from "next/link";
 import { 
@@ -34,9 +35,16 @@ if (typeof window !== "undefined") {
 const FooterComponent = () => {
   const footerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const pathname = usePathname();
+  const animationRef = useRef<gsap.Context | null>(null);
 
   useEffect(() => {
     if (!footerRef.current) return;
+
+    // Clean up previous animation
+    if (animationRef.current) {
+      animationRef.current.revert();
+    }
 
     const ctx = gsap.context(() => {
       // Set initial states
@@ -70,10 +78,39 @@ const FooterComponent = () => {
           );
         }
       });
-    });
 
-    return () => ctx.revert();
-  }, []);
+      // Check if footer is already in viewport and trigger animation
+      const checkAndAnimate = () => {
+        if (!footerRef.current) return;
+        const rect = footerRef.current.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const triggerPoint = windowHeight * 0.85;
+        
+        if (rect.top <= triggerPoint) {
+          // Footer is already visible, play animation immediately
+          tl.play();
+        }
+      };
+
+      // Check immediately and after a short delay (to account for layout shifts)
+      checkAndAnimate();
+      setTimeout(checkAndAnimate, 100);
+      setTimeout(checkAndAnimate, 300);
+
+      // Refresh ScrollTrigger after layout is stable
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 400);
+    }, footerRef);
+
+    animationRef.current = ctx;
+
+    return () => {
+      if (animationRef.current) {
+        animationRef.current.revert();
+      }
+    };
+  }, [pathname]);
 
   const quickLinks = [
     { name: "Home", href: "/" },
